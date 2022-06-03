@@ -6,6 +6,7 @@ require("solidity-coverage");
 require('hardhat-gas-reporter');
 require('hardhat-deploy');
 require('hardhat-deploy-ethers');
+require("@nomiclabs/hardhat-etherscan");
 require('./tasks');
 
 // This is a sample Hardhat task. To learn how to create your own go to
@@ -66,6 +67,17 @@ module.exports = {
   namedAccounts: {
     deployer: {
       default: 0,    // wallet address 0, of the mnemonic in .env
+    }
+  },
+
+  etherscan: {
+    // Your API key for Etherscan
+    // Obtain one at https://etherscan.io/
+    apiKey: {
+      bsc: process.env.BSCSCAN_API,
+      bscTestnet:process.env.BSCSCAN_API,
+      polygon:process.env.POLYGON_API,
+      polygonMumbai: process.env.POLYGON_API
     }
   },
 

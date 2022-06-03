@@ -10,6 +10,7 @@ module.exports = async function ({ deployments, getNamedAccounts }) {
     const onftArgs = ONFT_ARGS[hre.network.name]
     console.log({ onftArgs })
     console.log(`[${hre.network.name}] LayerZero Endpoint address: ${lzEndpointAddress}`)
+    console.log("deploy_arguments:", lzEndpointAddress, onftArgs.startMintId, onftArgs.endMintId)
 
     await deploy("town", {
         from: deployer,
