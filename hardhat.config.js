@@ -48,7 +48,7 @@ function accounts(chainKey) {
 module.exports = {
 
   solidity: {
-    version: "0.8.4",
+    version: "0.8.9",
     settings: {
       optimizer: {
         enabled: true,
@@ -77,7 +77,9 @@ module.exports = {
       bsc: process.env.BSCSCAN_API,
       bscTestnet:process.env.BSCSCAN_API,
       polygon:process.env.POLYGON_API,
-      polygonMumbai: process.env.POLYGON_API
+      polygonMumbai: process.env.POLYGON_API,
+      mainnet:process.env.ETH_API,
+      rinkeby: process.env.ETH_API
     }
   },
 
@@ -112,6 +114,8 @@ module.exports = {
     mumbai: {
       url: "https://polygon-mumbai.g.alchemy.com/v2/FrV_vui7K1XQdYPQW3JgptWlOKANta1X",
       chainId: 80001,
+      gas: 4100000,
+      gasPrice: 1500000000,
       accounts: accounts(),
     },
     'arbitrum-rinkeby': {

@@ -1,14 +1,18 @@
 {
-  "bsc-testnet": {
-    "startMintId": 1,
-    "endMintId": 10
-  },
-  "fuji": {
-    "startMintId": 11,
-    "endMintId": 20
-  },
   "mumbai": {
-    "startMintId": 21,
-    "endMintId": 30
+    "startMintId": 1,
+    "endMintId": 10000
+  },
+  "localhost": {
+    "startMintId": 1,
+    "endMintId": 10000
+  },
+  "bsc-testnet": {
+    "startMintId": 10001,
+    "endMintId": 20000
+  },
+  "rinkeby": {
+    "startMintId": 20001,
+    "endMintId": 30000
   }
 }

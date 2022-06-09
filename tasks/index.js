@@ -46,9 +46,15 @@ task("oftSend", "basedOFT.send()  tokens to another chain", require("./oftSend")
 
 //
 task(
-    "onftSetTrustedRemote",
+    "onftSetTrustedRemoteFromBase",
     "setTrustedRemote(chainId, sourceAddr) to allow the local contract to send/receive messages from known source contracts",
-    require("./onftSetTrustedRemote")
+    require("./onftSetTrustedRemoteFromBase")
+).addParam("targetNetwork", "the target network to let this instance receive messages from")
+
+task(
+    "onftSetTrustedRemoteFromMain",
+    "setTrustedRemote(chainId, sourceAddr) to allow the local contract to send/receive messages from known source contracts",
+    require("./onftSetTrustedRemoteFromMain")
 ).addParam("targetNetwork", "the target network to let this instance receive messages from")
 
 //
