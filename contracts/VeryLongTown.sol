@@ -4,7 +4,6 @@ pragma solidity 0.8.9;
 
 import "./onft/ONFT721.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
-import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 import "@openzeppelin/contracts/utils/cryptography/MerkleProof.sol";
 
 
@@ -17,7 +16,7 @@ contract VeryLongTown is ONFT721 {
     string baseURI;
     string public baseExtension = ".json";
     uint256 private preCost = 0.01 ether;
-    uint256 private publicCost = 0.01 ether;
+    uint256 private publicCost = 0.02 ether;
     uint256 public publicMaxPerTx = 10;
     uint256 constant presaleMaxPerWallet = 10;
     bool public paused = false;
@@ -172,11 +171,20 @@ contract VeryLongTown is ONFT721 {
         paused = _state;
     }
 
-
-
     function withdraw() external onlyOwner {
         uint256 royalty = address(this).balance;
         Address.sendValue(payable(owner()), royalty);
+    }
+    function setPreCost(uint256 _preCost) public onlyOwner {
+        preCost = _preCost;
+    }
+
+    function setMaxMintId(uint256 _maxMintId) public onlyOwner {
+        maxMintId = _maxMintId;
+    }
+
+    function setPublicCost(uint256 _publicCost) public onlyOwner {
+        publicCost = _publicCost;
     }
 
    /**
