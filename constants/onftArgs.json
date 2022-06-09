@@ -1,18 +1,14 @@
 {
   "mumbai": {
-    "startMintId": 1,
-    "endMintId": 10000
+    "startMintId": 10001,
+    "endMintId": 20000
   },
   "localhost": {
     "startMintId": 1,
     "endMintId": 10000
   },
-  "bsc-testnet": {
-    "startMintId": 10001,
-    "endMintId": 20000
-  },
   "rinkeby": {
-    "startMintId": 20001,
-    "endMintId": 30000
+    "startMintId": 1,
+    "endMintId": 10000
   }
 }
