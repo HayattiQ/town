@@ -16,7 +16,7 @@ contract VeryLongTown is ONFT721 {
     string baseURI;
     string public baseExtension = ".json";
     uint256 private preCost = 0.01 ether;
-    uint256 private publicCost = 0.02 ether;
+    uint256 private publicCost = 0.01 ether;
     uint256 public publicMaxPerTx = 10;
     uint256 constant presaleMaxPerWallet = 10;
     bool public paused = false;
@@ -39,7 +39,7 @@ contract VeryLongTown is ONFT721 {
         maxMintId = _endMintId;
     }
 
-    // public mint
+    // public mint ver2
     function publicMint(uint256 _mintAmount) public payable {
         uint256 cost = publicCost * _mintAmount;
         mintCheck(_mintAmount, nextMintId, cost);
@@ -50,8 +50,7 @@ contract VeryLongTown is ONFT721 {
         );
 
         for (uint256 i = 1; i <= _mintAmount; i++) {
-          _safeMint(msg.sender,  nextMintId);
-          nextMintId++;
+          mint();
         }
     }
 
@@ -74,9 +73,8 @@ contract VeryLongTown is ONFT721 {
         );
 
         for (uint256 i = 1; i <= _mintAmount; i++) {
-            _safeMint(msg.sender, nextMintId );
+            mint();
             whiteListClaimed[msg.sender]++;
-            nextMintId++;
         }
     }
 
@@ -94,12 +92,22 @@ contract VeryLongTown is ONFT721 {
         require(msg.value >= cost, "Not enough funds provided for mint");
     }
 
-    function ownerMint(uint256 count) public onlyOwner {
+    function ownerMint(address _address, uint256 count) public onlyOwner {
 
         for (uint256 i = 1; i <= count; i++) {
-          _safeMint(msg.sender,  nextMintId+1);
-          nextMintId++;
+          mint();
+          safeTransferFrom(msg.sender, _address, nextMintId-1);
         }
+    }
+
+        /// @notice Mint your ONFT
+    function mint() private {
+        require(nextMintId <= maxMintId, "UniversalONFT721: max mint limit reached");
+
+        uint newId = nextMintId;
+        nextMintId++;
+
+        _safeMint(msg.sender, newId);
     }
 
     function tokenURI(uint256 tokenId)
@@ -192,6 +200,22 @@ contract VeryLongTown is ONFT721 {
      */
     function setMerkleRoot(bytes32 _merkleRoot) external onlyOwner {
         merkleRoot = _merkleRoot;
+    }
+
+    function whiteListCountOfOwner(address owner)
+        public
+        view
+        returns (uint256)
+    {
+        return whiteListClaimed[owner];
+    }
+
+    function deleteWL(address addr)
+        public
+        virtual
+        onlyOwner
+    {
+        delete (whiteListClaimed[addr]);
     }
 
 }

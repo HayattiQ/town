@@ -7,6 +7,10 @@
     "startMintId": 1,
     "endMintId": 10000
   },
+  "ethereum": {
+    "startMintId": 1,
+    "endMintId": 10000
+  },
   "rinkeby": {
     "startMintId": 1,
     "endMintId": 10000
